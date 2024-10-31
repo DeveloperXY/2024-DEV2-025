@@ -8,7 +8,7 @@ import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import org.junit.Before
 import org.junit.Test
 
-class TicTacToeGameBoardTests {
+class GameBoardTests {
 
     private lateinit var gameBoard: GameBoard
 
