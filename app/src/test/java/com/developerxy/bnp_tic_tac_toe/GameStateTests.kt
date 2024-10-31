@@ -16,12 +16,10 @@ class GameStateTests {
     }
 
     @Test
-    fun starterPlayerShouldBeXByDefault() {
-        gameState.currentPlayer.shouldBeEqualComparingTo("X")
-    }
-
-    @Test
-    fun gameBoardShouldBeClearByDefault() {
-        gameState.gameBoard.isClear().shouldBeTrue()
+    fun initialGameStateIsCorrect() {
+        gameState.apply {
+            currentPlayer.shouldBeEqualComparingTo("X")
+            gameBoard.isClear().shouldBeTrue()
+        }
     }
 }
