@@ -1,5 +1,6 @@
 package com.developerxy.bnp_tic_tac_toe
 
+import com.developerxy.bnp_tic_tac_toe.domain.GameState
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import org.junit.Before
 import org.junit.Test
