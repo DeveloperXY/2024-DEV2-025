@@ -26,11 +26,19 @@ class GameStateTests {
     @Test
     fun `Making a move updates the game board and toggles current player`() {
         gameState.apply {
-            makeMove(at = 0 to 0)
-            currentPlayer.shouldBeEqualComparingTo("O")
+            // Place an X initially
+            (0 to 0).let { coords ->
+                makeMove(at = coords)
+                gameBoard.markAt(coords).shouldBeEqualComparingTo("X")
+                currentPlayer.shouldBeEqualComparingTo("O")
+            }
 
-            makeMove(at = 1 to 1)
-            currentPlayer.shouldBeEqualComparingTo("X")
+            // Place an O
+            (1 to 1).let { coords ->
+                makeMove(at = coords)
+                gameBoard.markAt(coords).shouldBeEqualComparingTo("O")
+                currentPlayer.shouldBeEqualComparingTo("X")
+            }
         }
     }
 }

@@ -1,8 +1,18 @@
 package com.developerxy.bnp_tic_tac_toe.domain
 
-const val STARTER_PLAYER = "X"
-
 class GameState(
-    val currentPlayer: String = STARTER_PLAYER,
-    val gameBoard: GameBoard = GameBoard()
-)
+    val gameBoard: GameBoard = GameBoard(),
+    firstPlayer: String = "X"
+) {
+    var currentPlayer: String = firstPlayer
+        private set
+
+    fun makeMove(at: Pair<Int, Int>) {
+        gameBoard.placeMark(mark = currentPlayer, at)
+        toggleCurrentPlayer()
+    }
+
+    private fun toggleCurrentPlayer() {
+        currentPlayer = if (currentPlayer == "X") "O" else "X"
+    }
+}
