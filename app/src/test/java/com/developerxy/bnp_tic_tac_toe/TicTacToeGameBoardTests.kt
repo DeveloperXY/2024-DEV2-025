@@ -1,5 +1,6 @@
 package com.developerxy.bnp_tic_tac_toe
 
+import com.developerxy.bnp_tic_tac_toe.domain.GameBoard
 import io.kotest.matchers.booleans.shouldBeTrue
 import org.junit.Before
 import org.junit.Test
