@@ -22,4 +22,15 @@ class GameStateTests {
             gameBoard.isClear().shouldBeTrue()
         }
     }
+
+    @Test
+    fun `Making a move updates the game board and toggles current player`() {
+        gameState.apply {
+            makeMove(at = 0 to 0)
+            currentPlayer.shouldBeEqualComparingTo("O")
+
+            makeMove(at = 1 to 1)
+            currentPlayer.shouldBeEqualComparingTo("X")
+        }
+    }
 }
