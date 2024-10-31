@@ -1,6 +1,7 @@
 package com.developerxy.bnp_tic_tac_toe
 
 import com.developerxy.bnp_tic_tac_toe.domain.GameBoard
+import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
@@ -32,18 +33,22 @@ class TicTacToeGameBoardTests {
 
     @Test
     fun placingNewMarkOutOfGridBoundsThrowsError() {
-        val maxRow = 2; val maxCol = 2
+        val maxRow = 2
+        val maxCol = 2
 
-        // Place a mark in the [0..2] ranges
-        for (i in 0 until maxRow) {
-            for (j in 0 until maxCol) {
-                gameBoard.placeMark(mark = "O", at = i to j)
+        // Place marks in the [-1..3][-1..3] coordinate ranges
+        for (i in -1..maxRow + 1) {
+            for (j in -1..maxCol + 1) {
+                val placeMark = {
+                    gameBoard.placeMark(mark = "O", at = i to j)
+                }
+
+                val coordsOutOfBounds = i < 0 || j < 0 || i > maxRow || j > maxCol
+                if (coordsOutOfBounds)
+                    shouldThrow<ArrayIndexOutOfBoundsException> { placeMark() }
+                else
+                    shouldNotThrow<ArrayIndexOutOfBoundsException> { placeMark() }
             }
-        }
-
-        val outOfBoundsCoords = (maxRow + 1 to maxCol + 1)
-        shouldThrow<Exception> {
-            gameBoard.placeMark(mark = "X", at = outOfBoundsCoords)
         }
     }
 }
