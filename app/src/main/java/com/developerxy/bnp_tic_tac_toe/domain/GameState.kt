@@ -10,6 +10,9 @@ class GameState(
         private set
 
     fun makeMove(at: Pair<Int, Int>) {
+        if (!gameBoard.isCellEmptyAt(at))
+            return
+
         gameBoard.placeMark(mark = currentPlayer, at)
 
         val didCurrentPlayerWin = checkForWin()
