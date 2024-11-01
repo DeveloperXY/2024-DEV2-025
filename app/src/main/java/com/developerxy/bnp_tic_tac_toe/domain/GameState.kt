@@ -6,6 +6,8 @@ class GameState(
 ) {
     var currentPlayer: String = firstPlayer
         private set
+    var status: GameStatus = GameStatus.ONGOING
+        private set
 
     fun makeMove(at: Pair<Int, Int>) {
         gameBoard.placeMark(mark = currentPlayer, at)

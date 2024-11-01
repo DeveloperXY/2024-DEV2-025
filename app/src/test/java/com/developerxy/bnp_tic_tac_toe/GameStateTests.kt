@@ -1,6 +1,7 @@
 package com.developerxy.bnp_tic_tac_toe
 
 import com.developerxy.bnp_tic_tac_toe.domain.GameState
+import com.developerxy.bnp_tic_tac_toe.domain.GameStatus
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import org.junit.Before
@@ -41,14 +42,5 @@ class GameStateTests {
                 currentPlayer.shouldBeEqualComparingTo("X")
             }
         }
-    }
-
-    @Test
-    fun `Game status is ongoing by default`() {
-        // TODO
-        // TODO
-        // TODO
-        // TODO
-        // TODO: move this test to the other first test
     }
 }
