@@ -20,6 +20,7 @@ class GameStateTests {
         gameState.apply {
             currentPlayer.shouldBeEqualComparingTo("X")
             gameBoard.isClear().shouldBeTrue()
+            status.shouldBeEqualComparingTo(GameStatus.ONGOING)
         }
     }
 
@@ -40,5 +41,14 @@ class GameStateTests {
                 currentPlayer.shouldBeEqualComparingTo("X")
             }
         }
+    }
+
+    @Test
+    fun `Game status is ongoing by default`() {
+        // TODO
+        // TODO
+        // TODO
+        // TODO
+        // TODO: move this test to the other first test
     }
 }
