@@ -1,5 +1,7 @@
 package com.developerxy.bnp_tic_tac_toe.domain
 
 enum class GameStatus {
-    ONGOING
+    ONGOING,
+    X_WON,
+    O_WON,
 }

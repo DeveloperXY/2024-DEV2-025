@@ -8,7 +8,7 @@ class GameBoard(
     }
 
     fun placeMark(mark: String, at: Pair<Int, Int>) {
-        val (col, row) = at
+        val (row, col) = at
         grid[row][col] = mark
     }
 
