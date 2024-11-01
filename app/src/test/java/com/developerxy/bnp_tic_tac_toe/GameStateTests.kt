@@ -306,6 +306,7 @@ class GameStateTests {
     fun `Restarting the game resets its state correctly`() {
         gameState.apply {
             restart()
+
             assertEquals(firstPlayerToBegin, currentPlayer)
             gameBoard.isClear().shouldBeTrue()
             status.shouldBeEqualComparingTo(GameStatus.ONGOING)

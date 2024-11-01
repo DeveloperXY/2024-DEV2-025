@@ -17,4 +17,12 @@ class GameBoard(
     fun isCellEmptyAt(coords: Pair<Int, Int>): Boolean = markAt(coords).isEmpty()
 
     fun isSaturated(): Boolean = grid.all { row -> row.all { col -> col.isNotEmpty() } }
+
+    fun clear() {
+        for (row in grid.indices) {
+            for (col in grid[row].indices) {
+                grid[row][col] = ""
+            }
+        }
+    }
 }

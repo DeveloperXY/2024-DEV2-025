@@ -2,9 +2,9 @@ package com.developerxy.bnp_tic_tac_toe.domain
 
 class GameState(
     val gameBoard: GameBoard = GameBoard(),
-    firstPlayer: String = "X"
+    val firstPlayerToBegin: String = "X"
 ) {
-    var currentPlayer: String = firstPlayer
+    var currentPlayer: String = firstPlayerToBegin
         private set
     var status: GameStatus = GameStatus.ONGOING
         private set
@@ -30,6 +30,12 @@ class GameState(
                 toggleCurrentPlayer()
             }
         }
+    }
+
+    fun restart() {
+        gameBoard.clear()
+        currentPlayer = firstPlayerToBegin
+        status = GameStatus.ONGOING
     }
 
     private fun toggleCurrentPlayer() {
