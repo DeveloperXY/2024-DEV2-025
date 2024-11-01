@@ -291,4 +291,14 @@ class GameStateTests {
             assertEquals(GameStatus.DRAW, status)
         }
     }
+
+    @Test
+    fun `Placing a mark on an already occupied cell does nothing`() {
+        gameState.apply {
+            makeMove(0 to 0)
+            assertEquals("O", currentPlayer)
+            makeMove(0 to 0)
+            assertEquals("O", currentPlayer)
+        }
+    }
 }
