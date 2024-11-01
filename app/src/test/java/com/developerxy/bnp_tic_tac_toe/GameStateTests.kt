@@ -206,4 +206,58 @@ class GameStateTests {
             assertEquals(GameStatus.X_WON, status)
         }
     }
+
+    @Test
+    fun `Test diagonal from top left to bottom right`() {
+        /*
+            X -   -
+            O - X -
+            O -   - X
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 0) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 1) },
+                { makeMove(2 to 0) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 2)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
+
+    @Test
+    fun `Test diagonal from top right to bottom left`() {
+        /*
+              -   - X
+            O - X -
+            X -   - O
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 2) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 1) },
+                { makeMove(2 to 2) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 0)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
 }
