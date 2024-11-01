@@ -20,7 +20,12 @@ class GameState(
                 GameStatus.O_WON
             }
         } else {
-            toggleCurrentPlayer()
+            if (gameBoard.isSaturated()) {
+                // Grid is saturated and no one won, then it's a draw
+                status = GameStatus.DRAW
+            } else {
+                toggleCurrentPlayer()
+            }
         }
     }
 

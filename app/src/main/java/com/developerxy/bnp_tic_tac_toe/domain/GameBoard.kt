@@ -13,4 +13,6 @@ class GameBoard(
     }
 
     fun markAt(coords: Pair<Int, Int>): String = grid[coords.first][coords.second]
+
+    fun isSaturated(): Boolean = grid.all { row -> row.all { col -> col.isNotEmpty() } }
 }

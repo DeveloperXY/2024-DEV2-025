@@ -4,4 +4,5 @@ enum class GameStatus {
     ONGOING,
     X_WON,
     O_WON,
+    DRAW,
 }
