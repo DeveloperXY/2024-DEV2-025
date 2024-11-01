@@ -260,4 +260,35 @@ class GameStateTests {
             assertEquals(GameStatus.X_WON, status)
         }
     }
+
+    @Test
+    fun `Test draw`() {
+        /*
+            X - O - X
+            O - O - X
+            X - X - O
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 0) },
+                { makeMove(0 to 1) },
+                { makeMove(0 to 2) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 2) },
+                { makeMove(1 to 1) },
+                { makeMove(2 to 0) },
+                { makeMove(2 to 2) }
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move that should saturate the board
+            makeMove(2 to 1)
+
+            assertEquals(GameStatus.DRAW, status)
+        }
+    }
 }
