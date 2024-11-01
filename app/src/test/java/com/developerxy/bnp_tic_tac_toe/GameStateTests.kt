@@ -125,4 +125,85 @@ class GameStateTests {
             assertEquals(GameStatus.X_WON, status)
         }
     }
+
+    @Test
+    fun `Test horizontal win on the top row`() {
+        /*
+            X - X - X
+              - O  - O
+              -   -
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 0) },
+                { makeMove(1 to 1) },
+                { makeMove(0 to 1) },
+                { makeMove(1 to 2) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(0 to 2)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
+
+    @Test
+    fun `Test horizontal win on the middle row`() {
+        /*
+              - O -
+            X - X - X
+              - O -
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(1 to 0) },
+                { makeMove(0 to 1) },
+                { makeMove(1 to 1) },
+                { makeMove(2 to 1) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(1 to 2)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
+
+    @Test
+    fun `Test horizontal win on the bottom row`() {
+        /*
+              -   -
+            O - O -
+            X - X - X
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(2 to 0) },
+                { makeMove(1 to 0) },
+                { makeMove(2 to 1) },
+                { makeMove(1 to 1) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 2)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
 }
