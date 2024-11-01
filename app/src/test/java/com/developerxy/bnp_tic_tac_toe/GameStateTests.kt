@@ -4,6 +4,7 @@ import com.developerxy.bnp_tic_tac_toe.domain.GameState
 import com.developerxy.bnp_tic_tac_toe.domain.GameStatus
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -41,6 +42,87 @@ class GameStateTests {
                 gameBoard.markAt(coords).shouldBeEqualComparingTo("O")
                 currentPlayer.shouldBeEqualComparingTo("X")
             }
+        }
+    }
+
+    @Test
+    fun `Test vertical win on the left column`() {
+        /*
+            X - O -
+            X -   - O
+            X -   -
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 0) },
+                { makeMove(0 to 1) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 2) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 0)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
+
+    @Test
+    fun `Test vertical win on the middle column`() {
+        /*
+              - X -
+            O - X - O
+              - X -
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 1) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 1) },
+                { makeMove(1 to 2) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 1)
+
+            assertEquals(GameStatus.X_WON, status)
+        }
+    }
+
+    @Test
+    fun `Test vertical win on the right column`() {
+        /*
+              -   - X
+            O -   - X
+              - O - X
+         */
+        gameState.apply {
+            val steps = listOf(
+                { makeMove(0 to 2) },
+                { makeMove(1 to 0) },
+                { makeMove(1 to 2) },
+                { makeMove(2 to 1) },
+            )
+
+            steps.forEach {
+                it()
+                assertEquals(GameStatus.ONGOING, status)
+            }
+
+            // Final X move
+            makeMove(2 to 2)
+
+            assertEquals(GameStatus.X_WON, status)
         }
     }
 }
