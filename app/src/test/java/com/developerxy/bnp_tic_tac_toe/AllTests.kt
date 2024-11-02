@@ -5,5 +5,5 @@ import org.junit.runners.Suite
 import org.junit.runners.Suite.SuiteClasses
 
 @RunWith(Suite::class)
-@SuiteClasses(GameBoardTests::class, GameStateTests::class)
+@SuiteClasses(GameBoardTests::class, GameViewModelTests::class)
 class AllTests

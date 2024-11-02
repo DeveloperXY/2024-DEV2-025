@@ -1,4 +1,4 @@
-package com.developerxy.bnp_tic_tac_toe.domain
+package com.developerxy.bnp_tic_tac_toe.domain.model
 
 enum class GameStatus {
     ONGOING,

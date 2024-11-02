@@ -1,6 +1,6 @@
 package com.developerxy.bnp_tic_tac_toe
 
-import com.developerxy.bnp_tic_tac_toe.domain.GameBoard
+import com.developerxy.bnp_tic_tac_toe.domain.model.GameBoard
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -27,7 +27,7 @@ class GameBoardTests {
         val coords = 1 to 1
         val mark = "X"
 
-        gameBoard.placeMark(mark, at = coords)
+        gameBoard.grid[coords.first][coords.second] = mark
         gameBoard.markAt(coords).shouldBeEqualComparingTo(mark)
     }
 
@@ -40,7 +40,7 @@ class GameBoardTests {
         for (i in -1..maxRow + 1) {
             for (j in -1..maxCol + 1) {
                 val placeMark = {
-                    gameBoard.placeMark(mark = "O", at = i to j)
+                    gameBoard.grid[i][j] = "O"
                 }
 
                 val coordsOutOfBounds = i < 0 || j < 0 || i > maxRow || j > maxCol
