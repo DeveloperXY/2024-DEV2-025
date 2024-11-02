@@ -231,4 +231,39 @@ class GameViewModelTests {
             assertCurrentPlayerIs("O")
         }
     }
+
+    @Test
+    fun `Making a move after player X or O wins does nothing`() {
+        with(GameViewModel(firstPlayerToBegin = "X")) {
+            simulateVerticalWinOnRightColumn()
+            assertCurrentGameStatusMatches(GameStatus.X_WON)
+
+            val gameBoard = gameState.value.gameBoard
+            val coords = 0 to 0
+
+            assertCurrentPlayerIs("O")
+            assertTrue(gameBoard.isCellEmptyAt(coords))
+
+            makeMove(coords)
+
+            assertCurrentPlayerIs("O")
+            assertTrue(gameBoard.isCellEmptyAt(coords))
+        }
+
+        with(GameViewModel(firstPlayerToBegin = "O")) {
+            simulateVerticalWinOnRightColumn()
+            assertCurrentGameStatusMatches(GameStatus.O_WON)
+
+            val gameBoard = gameState.value.gameBoard
+            val coords = 0 to 0
+
+            assertCurrentPlayerIs("X")
+            assertTrue(gameBoard.isCellEmptyAt(coords))
+
+            makeMove(coords)
+
+            assertCurrentPlayerIs("X")
+            assertTrue(gameBoard.isCellEmptyAt(coords))
+        }
+    }
 }
