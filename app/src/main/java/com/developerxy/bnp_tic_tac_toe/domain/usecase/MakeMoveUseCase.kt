@@ -8,9 +8,9 @@ class MakeMoveUseCase {
     operator fun invoke(gameState: GameState, at: Pair<Int, Int>): GameState {
         val currentBoard = gameState.gameBoard
         val currentPlayer = gameState.currentPlayer
+        val currentGameStatus = gameState.status
 
-        // TODO: check if game is ongoing
-        if (!currentBoard.isCellEmptyAt(at))
+        if (!currentBoard.isCellEmptyAt(at) || currentGameStatus != GameStatus.ONGOING)
             return gameState
 
         val updatedBoard = currentBoard.copy().apply {
