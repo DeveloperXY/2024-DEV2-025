@@ -21,6 +21,18 @@ class GameViewModelTests {
     }
 
     @Test
+    fun `First player to begin the game is correctly set`() {
+        val gameViewModel1 = GameViewModel(firstPlayerToBegin = "O")
+        gameViewModel1.assertCurrentPlayerIs("O")
+
+        val gameViewModel2 = GameViewModel(firstPlayerToBegin = "X")
+        gameViewModel2.assertCurrentPlayerIs("X")
+
+        val gameViewModel3 = GameViewModel()
+        gameViewModel3.assertCurrentPlayerIs("X")
+    }
+
+    @Test
     fun `Making a move updates the game board and toggles current player`() {
         with(gameViewModel) {
             // Place an X initially
