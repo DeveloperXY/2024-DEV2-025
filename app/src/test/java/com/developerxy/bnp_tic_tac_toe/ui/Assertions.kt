@@ -1,7 +1,6 @@
-package com.developerxy.bnp_tic_tac_toe
+package com.developerxy.bnp_tic_tac_toe.ui
 
 import com.developerxy.bnp_tic_tac_toe.domain.model.GameStatus
-import com.developerxy.bnp_tic_tac_toe.ui.GameViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 
@@ -16,9 +15,11 @@ fun GameViewModel.assertCurrentPlayerIs(player: String) {
 }
 
 fun GameViewModel.assertInitialGameStateIsCorrect() {
+    val firstPlayer = firstPlayerToBegin
     val gameState = gameState.value
+
     gameState.apply {
-        assertEquals("X", currentPlayer)
+        assertEquals(firstPlayer, currentPlayer)
         assertTrue(gameBoard.isClear())
         assertEquals(GameStatus.ONGOING, status)
     }

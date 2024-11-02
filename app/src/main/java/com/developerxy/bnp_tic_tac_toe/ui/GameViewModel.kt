@@ -10,7 +10,7 @@ import com.developerxy.bnp_tic_tac_toe.domain.usecase.StartNewGameUseCase
 class GameViewModel(
     private val _makeMove: MakeMoveUseCase = MakeMoveUseCase(),
     private val _startNewGame: StartNewGameUseCase = StartNewGameUseCase(),
-    private val firstPlayerToBegin: String = "X"
+    val firstPlayerToBegin: String = "X"
 ) : ViewModel() {
 
     private val _gameState = mutableStateOf(_startNewGame(firstPlayerToBegin))
