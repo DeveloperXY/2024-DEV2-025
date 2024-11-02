@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.developerxy.bnp_tic_tac_toe.ui.TicTacToeScreen
 import com.developerxy.bnp_tic_tac_toe.ui.theme.Bnp_tic_tac_toeTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Bnp_tic_tac_toeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    TicTacToeScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
