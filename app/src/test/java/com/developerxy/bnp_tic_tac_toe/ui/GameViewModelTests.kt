@@ -2,6 +2,7 @@ package com.developerxy.bnp_tic_tac_toe.ui
 
 import com.developerxy.bnp_tic_tac_toe.domain.model.GameStatus
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -211,6 +212,23 @@ class GameViewModelTests {
             assertCurrentGameStatusMatches(GameStatus.O_WON)
             restartGame()
             assertInitialGameStateIsCorrect()
+        }
+    }
+
+    @Test
+    fun `Making a move after a draw does nothing`() {
+        with(GameViewModel(firstPlayerToBegin = "O")) {
+            simulateDraw()
+            assertCurrentPlayerIs("X")
+            makeMove(0 to 0)
+            assertCurrentPlayerIs("X")
+        }
+
+        with(GameViewModel(firstPlayerToBegin = "X")) {
+            simulateDraw()
+            assertCurrentPlayerIs("O")
+            makeMove(0 to 0)
+            assertCurrentPlayerIs("O")
         }
     }
 }
